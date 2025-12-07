@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comunicado - Enzo Gambarini</title>
+  <style>
+    :root{
+      --paper:#fffdf8;
+      --ink:#222;
+      --accent:#e2557b;
+      --shadow:rgba(30,30,30,0.12);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f2e6f5,#fff4f7);
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .card{
+      width:320px;
+      height:220px;
+      background:var(--paper);
+      border-radius:14px;
+      box-shadow:0 14px 30px rgba(0,0,0,0.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      font-weight:600;
+      cursor:pointer;
+      position:relative;
+      transition:transform .4s ease;
+      animation:float 3s ease-in-out infinite;
+    }
+    .card:hover{
+      transform:scale(1.05);
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+      100%{transform:translateY(0)}
+    }
+
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .overlay.show{display:flex;}
+
+    .modal{
+      max-width:700px;
+      width:100%;
+      background:white;
+      padding:26px;
+      border-radius:10px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      position:relative;
+      animation:fadeUp .45s ease;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(20px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .hearts{
+      position:absolute;
+      top:-40px;
+      left:20px;
+      display:flex;
+      gap:10px;
+    }
+
+    .heart{
+      font-size:30px;
+      animation:floatHeart 1.5s infinite ease-in-out;
+    }
+
+    @keyframes floatHeart{
+      0%{transform:translateY(0);opacity:0.7}
+      50%{transform:translateY(-12px);opacity:1}
+      100%{transform:translateY(0);opacity:0.7}
+    }
+
+    .close{
+      position:absolute;
+      top:10px;
+      right:10px;
+      background:transparent;
+      border:0;
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    pre{
+      white-space:pre-wrap;
+      line-height:1.42;
+      font-size:15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">💌 Abrir Carta</div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <div class="hearts">
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+        <div class="heart">❤</div>
+      </div>
+      <button class="close" id="close">✖</button>
+      <pre>
+Assunto: Comunicado de Desligamento de Enzo Gambarini
+
+Prezados,
+
+É com grande respeito e consideração que informamos que, a partir de [data], Enzo Gambarini não ocupa mais o cargo de Gerente do Time [Nome do Time ou Departamento] em nossa organização.
+
+Enzo desempenhou um papel fundamental durante o tempo em que esteve à frente da equipe, contribuindo significativamente para o crescimento e sucesso de [detalhes importantes]. Agradecemos imensamente por sua dedicação, profissionalismo e pelos resultados alcançados.
+
+A decisão de sua saída foi tomada de forma [motivo]. Desejamos a ele muito sucesso em seus novos projetos.
+
+Atenciosamente,
+      </pre>
+    </div>
+  </div>
+
+<script>
+  const card = document.getElementById("card");
+  const overlay = document.getElementById("overlay");
+  const closeBtn = document.getElementById("close");
+
+  card.onclick = ()=>{
+    overlay.classList.add("show");
+  }
+  closeBtn.onclick = ()=>{
+    overlay.classList.remove("show");
+  }
+  overlay.onclick = (e)=>{
+    if(e.target === overlay){overlay.classList.remove("show");}
+  }
+</script>
+</body>
+</html>
